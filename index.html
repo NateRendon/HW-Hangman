@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangman!!</title>
+</head>
+<body>
+
+<div class='container'>
+    <header>
+        <h1>Hangman Game!</h1>
+        <h2>Nathan's Words!!</h2>
+    </header>
+    <div class='underscore'></div>
+    <div class='rightGuess'></div>
+    <div class='wrongGuess'></div>
+</div>
+
+
+<script>
+        //my word bank
+        const words = ['', '', '', '',];
+        //Randomly guess words
+        let randNum = Math.floor(Math.random() * words.length);
+        let chosenWord = word[randNum];
+        let rightWord = [];
+        let wrongWord = [];
+        let underScore = [];
+        //creating underscoress based on length of words
+        let generateUnderscore = () => {
+            for (let i = 0; i < chosenWord.length; i++) {
+                underScore.push('_');
+            }
+            return underSCore;
+        }
+    
+        //get user guesses
+        document.addEventListener('keypress', (event) => {
+            let keyword = String.fromCharCode(keyCode);
+            //if users guess is right
+            if (chosenWord.indexOf(keyword) > -1) {
+            //add to right array
+                rightWord.push(keyword);
+            //replace underscore with right letter
+                underScore[chosenWord.indexOf(keyword)] = keyword;
+            //checks to see if user word matches guesses
+            if(underscore.join('') === chosenWord) {
+                alert('You Win!');
+            }
+    
+            }
+        });
+    
+    
+    </script>
+
+
+
+</body>
+</html>
