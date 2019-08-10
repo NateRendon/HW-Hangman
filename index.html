@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Hangman!!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -18,14 +19,14 @@
 
 <script>
         //my word bank
-        const words = ['pirate', 'lamb', 'chocolate', 'captain', 'card', 'gaming', 'radio', 'jazz', 'animals', 'dog', 'cat'];
+        const word = ['pirate', 'lamb', 'chocolate', 'captain', 'card', 'gaming', 'radio', 'jazz', 'animals', 'dog', 'cat'];
         //Randomly guess words
-        let randNum = Math.floor(Math.random() * words.length);
+        let randNum = Math.floor(Math.random() * word.length);
         let chosenWord = word[randNum];
         let rightWord = [];
         let wrongWord = [];
         let underScore = [];
-
+        console.log(chosenWord);
         // DOM manipulation to help
         let docUndeScore = document.getElementsByClassName('underScore');
         let docRightGuess = document.getElementsByClassName('rightGuess');
@@ -35,22 +36,22 @@
             for (let i = 0; i < chosenWord.length; i++) {
                 underScore.push('_');
             }
-            return underSCore;
+            return underScore;
         }
     
         //get user guesses
         document.addEventListener('keypress', (event) => {
-            let keyword = String.fromCharCode(keyCode);
+            let keyword = String.fromCharCode(event.keyCode);
             //if users guess is right
             if (chosenWord.indexOf(keyword) > -1) {
             //add to right array
                 rightWord.push(keyword);
             //replace underscore with right letter
                 underScore[chosenWord.indexOf(keyword)] = keyword;
-                docUnderScore[0].innerHTML = underScore.join('');
+                docUnderScore[0].innerHTML = underScore.join(' ');
                 docRightGuess[0].innerHTML = rightWord;
             //checks to see if user word matches guesses
-            if(underscore.join('') === chosenWord) {
+            if(underScore.join('') === chosenWord) {
                 alert('You Win!');
                 }
             }
@@ -60,8 +61,9 @@
             }
         });
 
-       docUnderScore.innerHTML = generateUnderscore().join(' ');
+        docUnderScore.innerHTML = generateUnderscore().join(' ');
+       
     
     </script>
-
+    </body>
 </html>
