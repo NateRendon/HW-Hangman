@@ -11,20 +11,25 @@
         <h2>Nathan's Words!!</h2>
     </header>
     <div class='underscore'></div>
-    <div class='rightGuess'></div>
-    <div class='wrongGuess'></div>
+    <div class='rightGuess'>Right Guess</div>
+    <div class='wrongGuess'>Wrong Guess</div>
 </div>
-
+</body>
 
 <script>
         //my word bank
-        const words = ['', '', '', '',];
+        const words = ['pirate', 'lamb', 'chocolate', 'captain', 'card', 'gaming', 'radio', 'jazz', 'animals', 'dog', 'cat'];
         //Randomly guess words
         let randNum = Math.floor(Math.random() * words.length);
         let chosenWord = word[randNum];
         let rightWord = [];
         let wrongWord = [];
         let underScore = [];
+
+        // DOM manipulation to help
+        let docUndeScore = document.getElementsByClassName('underScore');
+        let docRightGuess = document.getElementsByClassName('rightGuess');
+        let docWrongGuess = document.getElementsByClassName('wrongGuess');
         //creating underscoress based on length of words
         let generateUnderscore = () => {
             for (let i = 0; i < chosenWord.length; i++) {
@@ -42,18 +47,21 @@
                 rightWord.push(keyword);
             //replace underscore with right letter
                 underScore[chosenWord.indexOf(keyword)] = keyword;
+                docUnderScore[0].innerHTML = underScore.join('');
+                docRightGuess[0].innerHTML = rightWord;
             //checks to see if user word matches guesses
             if(underscore.join('') === chosenWord) {
                 alert('You Win!');
+                }
             }
-    
+            else {
+                wrongWord.push(keyword);
+                docWrongGuess[0].innerHTML = wrongWord;
             }
         });
-    
+
+       docUnderScore.innerHTML = generateUnderscore().join(' ');
     
     </script>
 
-
-
-</body>
 </html>
