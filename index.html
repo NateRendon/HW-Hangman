@@ -9,9 +9,9 @@
 <div class='container'>
     <header>
         <h1>Hangman Game!</h1>
-        <h2>Nathan's Words!!</h2>
+        <h2>What's Nate thinkin about?!</h2>
     </header>
-    <div class='underscore'></div>
+    <div class='underScore'></div>
     <div class='rightGuess'>Right Guess</div>
     <div class='wrongGuess'>Wrong Guess</div>
 </div>
@@ -32,7 +32,7 @@
         let docRightGuess = document.getElementsByClassName('rightGuess');
         let docWrongGuess = document.getElementsByClassName('wrongGuess');
         //creating underscoress based on length of words
-        let generateUnderscore = () => {
+        let generateUnderScore = () => {
             for (let i = 0; i < chosenWord.length; i++) {
                 underScore.push('_');
             }
@@ -48,10 +48,10 @@
                 rightWord.push(keyword);
             //replace underscore with right letter
                 underScore[chosenWord.indexOf(keyword)] = keyword;
-                docUnderScore[0].innerHTML = underScore.join(' ');
+                docUnderScore[0].innerHTML = underScore.join('');
                 docRightGuess[0].innerHTML = rightWord;
             //checks to see if user word matches guesses
-            if(underScore.join('') === chosenWord) {
+            if(underScore.join('') == chosenWord) {
                 alert('You Win!');
                 }
             }
@@ -61,7 +61,7 @@
             }
         });
 
-        docUnderScore.innerHTML = generateUnderscore().join(' ');
+        docUnderScore.innerHTML = generateUnderScore().join(' ');
        
     
     </script>
