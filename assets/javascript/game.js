@@ -1,0 +1,88 @@
+// Creates an array of words to solve
+const options = ['pirate', 'lamb', 'chocolate', 
+'captain', 'card', 'gaming', 
+'radio', 'jazz', 'animals', 'dog', 'cat'];
+
+const wordToSolve = [];
+const lettersUsed = [];
+let optionChosen = "";
+let wins = 0;
+let losses = 0;
+let guessesRemaining = 15;
+
+function startNewGame() {
+  // Randomly chooses a word from the options array.
+  optionChosen = options[Math.floor(Math.random() * options.length)];
+  clearArray(lettersUsed);
+  clearArray(wordToSolve);
+  guessesRemaining = 15;
+
+  // Sets "blanks" for each letter in word
+  for (let i = 0; i < optionChosen.length; i++) {
+    if (optionChosen.charAt(i) !== ' ') {
+    wordToSolve[i] = '_';
+    }
+    else {
+    wordToSolve[i] = '&nbsp&nbsp';
+    }
+  }
+
+  // Displays word to solve and the number of guesses remaining
+  document.getElementById("wordToSolve").innerHTML = wordToSolve.join(" ");
+  document.getElementById("lettersUsed").innerHTML = "";
+  document.getElementById("numGuessesRemaining").innerHTML = guessesRemaining;
+}
+
+function clearArray(arrayToClear) {
+  while(arrayToClear.length > 0) {
+    arrayToClear.pop();
+  }
+}
+
+startNewGame();
+
+// This function is run whenever the user presses a key.
+document.onkeyup = function(event) {
+
+  //Clear message
+  document.getElementById("message").innerHTML = "";
+
+  // Determines which key was pressed.
+  let userGuess = event.key;
+
+  // Displays the key the user pressed.
+  lettersUsed.push(userGuess);
+  document.getElementById("lettersUsed").innerHTML = lettersUsed.join(", ");
+
+  // Check if letter is in word.
+  let found = false;
+  for (let i = 0; i < optionChosen.length; i++) {
+    if (optionChosen[i] === userGuess.toLowerCase()) {
+      wordToSolve[i] = userGuess;
+      document.getElementById("wordToSolve").innerHTML = wordToSolve.join(" ");
+      found = true;
+    }
+  }
+
+  // Decrement guesses remaining if letter not found
+  if (!found) {
+    guessesRemaining--;
+    document.getElementById("numGuessesRemaining").innerHTML = guessesRemaining;
+  }
+
+  // Check if user guessed the word
+  let numBlanks = wordToSolve.indexOf('_');
+
+  if (numBlanks < 0) {
+    wins++;
+    document.getElementById("message").innerHTML = "Congratulations! <br/> You guessed correctly: <br/>" + optionChosen;
+    document.getElementById("winScore").innerHTML = wins;
+    startNewGame();
+  }
+  else if (guessesRemaining == 0) {
+    losses++;
+    document.getElementById("message").innerHTML = "Game Over! <br/> Answer was: " + optionChosen;
+    document.getElementById("loseScore").innerHTML = losses;
+    startNewGame();
+  }
+};

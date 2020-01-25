@@ -1,0 +1,12 @@
+.card-header {
+    background-color: blue;
+}
+
+.card-body {
+    background-color: rgb(216, 202, 202);
+}
+
+.jumbotron {
+    background-color: rgb(39, 176, 218);
+    color: white;
+}
